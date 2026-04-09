@@ -1,0 +1,33 @@
+{
+  "name": "sveapulse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cz": "cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CNLGL/SveaPulse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CNLGL/SveaPulse/issues"
+  },
+  "homepage": "https://github.com/CNLGL/SveaPulse#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
