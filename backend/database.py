@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # SQLite dosyasının yolu
-SQLALCHEMY_DATABASE_URL = "sqlite:///./sveapulse.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:////var/lib/grafana/sveapulse.db"
 
 # Engine oluşturulurken create_engine yeterlidir
 engine = create_engine(

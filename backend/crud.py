@@ -1,35 +1,25 @@
 from sqlalchemy.orm import Session
 import models
 
-def create_response(db: Session, dept_id: int, wellbeing: int, stress: int):
-    bd_response = model.SurveyResponse(
-        departmen_id=dept_id,
-        wellbeing_score=wellbeing,
-        stress_score=stress
-            )
-    db.add(db_response)
+def save_survey_response(db: Session, data: dict):
+    # Gelen datadan rol ve departmanı ayırıyoruz, geri kalanı 'answers' içine atıyoruz
+    role = data.get("role", "Unknown")
+    dept = data.get("department", "Unknown")
+    
+    # answers içinden role ve dept'i çıkaralım ki sadece sorular kalsın
+    answers_only = {k: v for k, v in data.items() if k not in ["role", "department"]}
+    
+    new_response = models.SurveyResponse(
+        role=role,
+        department=dept,
+        answers=answers_only
+    )
+    
+    db.add(new_response)
     db.commit()
-    db.refresh(db.response)
-    return db.response
+    db.refresh(new_response)
+    return new_response
 
-def get_department_pulse(db: Session, dept_id: int):
-    response = db.query(models.SurveyResponse).filter(models.SurveyResponse.department_id == dept_id).all()
-    count = len(responses)
-
-    #Gizlilik
-    THRESHOLD = 8
-
-    if count < THRESHOLD:
-        return {
-                "status": "Incomplete",
-                "message": f"Sekretessgrängs ej nådd. Minst {TRESHHOLD} svar krävs."
-                }
-
-        avg_wellbeing = sum(r.wellbeing for r in response) / count
-        avg_stress = sum(r.stress_score for r in response) / count
-
-        return {
-                "status": "Success",
-                "avg_wellbeing": round(avg_wellbeing, 1),
-                "count": count
-                }
+# Dashboard için tüm verileri çeken fonksiyon
+def get_all_responses(db: Session):
+    return db.query(models.SurveyResponse).all()
