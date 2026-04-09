@@ -1,3 +1,27 @@
+# --- SveaPulse Özel Eklemeler ---
+
+# Sanal ortam (Senin sisteminde .venv olarak görünüyor)
+.venv/
+venv/
+env/
+
+# SQLite Veritabanı (Veritabanı yapısı kodda var ama veriler gitmemeli)
+*.db
+*.db-journal
+
+# Python ile oluşturulan Excel raporları
+*.xlsx
+
+# Frontend tarafı için (Next.js kurduğunda lazım olacak)
+node_modules/
+.next/
+out/
+build/
+.env*.local
+
+# --- SveaPulse Özel Eklemeler ---
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
