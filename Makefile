@@ -18,8 +18,13 @@ install:
 	@echo "✅ Kurulum tamam!"
 
 run:
-	@echo "⚡ Sistem başlatılıyor..."
-	# Backend'i arka planda başlat, Frontend'i ön planda çalıştır
+	@echo "🔐 Grafana ve DB izinleri kontrol ediliyor..."
+	# 1. Grafana klasörüne giriş izni ver (755)
+	@chmod 755 grafana 2>/dev/null || true
+	# 2. DB dosyasına okuma/yazma izni ver (664)
+	@chmod 664 grafana/sveapulse.db 2>/dev/null || true
+	
+	@echo "🚀 Backend ve Frontend başlatılıyor..."
 	(cd backend && $(PYTHON) main.py & cd frontend && $(NPM) run dev)
 
 push:
